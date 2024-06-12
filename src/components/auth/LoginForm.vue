@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/user'
 
-const { login } = useUserStore()
+const user = useUserStore()
 
 const submission_inprocess = ref(false)
 const show_alert = ref(false)
@@ -19,7 +19,7 @@ const submit = async (values) => {
   show_alert.value = true
 
   try {
-    await login(values)
+    await user.login(values)
   } catch (error) {
     submission_inprocess.value = false
     alert_variant.value = 'bg-red-600'
