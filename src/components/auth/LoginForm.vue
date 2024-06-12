@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { useUserStore } from '@/stores/user'
+
+const { login } = useUserStore()
 
 const submission_inprocess = ref(false)
 const show_alert = ref(false)
@@ -11,13 +14,22 @@ const schema = {
   password: 'required'
 }
 
-const submit = (values) => {
+const submit = async (values) => {
   submission_inprocess.value = true
   show_alert.value = true
 
+  try {
+    await login(values)
+  } catch (error) {
+    submission_inprocess.value = false
+    alert_variant.value = 'bg-red-600'
+    alert_msg.value = 'Invalid login details.'
+    return
+  }
+
   alert_variant.value = 'bg-green-500'
-  alert_msg.value = 'Hurray! '
-  console.log({ values })
+  alert_msg.value = 'Your are now logged in.'
+  window.location.reload()
 }
 </script>
 

@@ -1,6 +1,16 @@
 <script setup>
+import { onBeforeMount } from 'vue'
 import AppHeader from '@/components/AppHeader.vue'
 import AppAuth from '@/components/AppAuth.vue'
+import { useUserStore } from '@/stores/user'
+import { auth } from '@/includes/firebase'
+const user = useUserStore()
+
+onBeforeMount(() => {
+  if (auth.currentUser) {
+    user.isLoggedIn = true
+  }
+})
 </script>
 
 <template>

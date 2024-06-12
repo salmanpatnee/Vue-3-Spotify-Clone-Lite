@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { useUserStore } from '@/stores/user'
+
+const { register } = useUserStore()
 
 const submission_inprocess = ref(false)
 const show_alert = ref(false)
@@ -20,13 +23,22 @@ const userData = {
   country: 'USA'
 }
 
-const submit = (values) => {
+const submit = async (values) => {
   submission_inprocess.value = true
   show_alert.value = true
 
+  try {
+    await register(values)
+  } catch (error) {
+    submission_inprocess.value = false
+    alert_variant.value = 'bg-red-600'
+    alert_msg.value = 'An enexpected error occured.'
+    return
+  }
+
   alert_variant.value = 'bg-green-500'
   alert_msg.value = 'Hurray! You account is created.'
-  console.log({ values })
+  window.location.reload()
 }
 </script>
 
