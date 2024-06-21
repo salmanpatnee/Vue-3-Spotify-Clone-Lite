@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 import Home from '@/views/HomeView.vue'
 import Manage from '@/views/ManageView.vue'
-import { useUserStore } from '@/stores/user'
+import Track from '@/views/TrackShow.vue'
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
   {
     path: '/manage-music',
     redirect: { name: 'manage' }
+  },
+  {
+    path: '/track/:id',
+    name: 'track.show',
+    component: Track
   },
   {
     path: '/:catchAll(.*)*',
