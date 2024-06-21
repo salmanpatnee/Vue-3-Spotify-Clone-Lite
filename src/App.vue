@@ -5,6 +5,7 @@ import AppPlayer from '@/components/AppPlayer.vue'
 import AppAuth from '@/components/AppAuth.vue'
 import { useUserStore } from '@/stores/user'
 import { auth } from '@/includes/firebase'
+
 const user = useUserStore()
 
 onBeforeMount(() => {
