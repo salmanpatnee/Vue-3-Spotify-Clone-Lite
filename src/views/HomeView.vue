@@ -1,8 +1,12 @@
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { tracksCollection } from '@/includes/firebase'
 import TrackItem from '@/components/track/TrackItem.vue'
 import vIconSecondary from '@/directives/icon-secondary'
+
+const { t } = useI18n()
+
 const tracks = ref([])
 const perPage = ref(25)
 const inProcess = ref(false)
@@ -66,12 +70,11 @@ onBeforeUnmount(() => {
       ></div>
       <div class="container mx-auto">
         <div class="text-white main-header-content">
-          <h1 class="font-bold text-5xl mb-5">Listen to Great Music!</h1>
+          <h1 class="font-bold text-5xl mb-5">{{ t('home.listen') }}</h1>
           <p class="w-full md:w-8/12 mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dolor mollis,
-            congue augue non, venenatis elit. Nunc justo eros, suscipit ac aliquet imperdiet,
-            venenatis et sapien. Duis sed magna pulvinar, fringilla lorem eget, ullamcorper urna.
+            {{ t('home.para') }}
           </p>
+          <span class="card-title">{{ t('home.card_title') }}</span>
         </div>
       </div>
 
@@ -84,11 +87,9 @@ onBeforeUnmount(() => {
     <!-- Main Content -->
     <section class="container mx-auto">
       <div class="bg-white rounded border border-gray-200 relative flex flex-col">
-        <div
-          class="px-6 pt-6 pb-5 font-bold border-b border-gray-200"
-          v-icon-secondary="{ icon: 'headphones-alt', right: true }"
-        >
-          <span class="card-title">Songs</span>
+        <!-- <span class="card-title">{{ t('home.card_title') }}</span> -->
+        <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
+          <span class="card-title" v-text="t('home.card_title')"></span>
           <!-- Icon -->
         </div>
         <!-- Playlist -->

@@ -1,0 +1,21 @@
+{
+  "menu": {
+    "manage": "Manage",
+    "logout": "Logout",
+    "login": "Login / Register"
+  },
+  "form": {
+    "comment_placeholder": "Your comment here...",
+    "submit_button": "Submit",
+    "latest": "Latest",
+    "oldest": "Oldest"
+  },
+  "home": {
+    "listen": "Listen to Great Recitations!",
+    "para": "Immerse yourself in the enchanting world of spoken word with 'Listen to Great Recitations!' Experience the power and beauty of masterfully delivered verses, where each word resonates with emotion and meaning. Whether you are a poetry enthusiast or simply seeking a moment of inspiration, our collection of recitations offers something for everyone. Let the captivating voices of our talented speakers transport you to a realm where language comes alive, stirring your soul and igniting your imagination. Tune in and discover the timeless magic of great recitations today!",
+    "card_title": "Tracks"
+  },
+  "track": {
+    "comment_count": "No comments | 1 comment | {n} comments"
+  }
+}

@@ -2,6 +2,9 @@
 import { useModalStore } from '@/stores/modal'
 import { useUserStore } from '@/stores/user'
 import { useRouter, useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
+const { locale, t } = useI18n({ useScope: 'global' })
 
 const modal = useModalStore()
 const user = useUserStore()
@@ -17,6 +20,14 @@ const logout = () => {
     router.push({ name: 'home' })
   }
 }
+
+const changeLocale = () => {
+  locale.value = locale.value === 'ar' ? 'en' : 'ar'
+}
+
+const currentLocale = computed(() => {
+  return locale.value === 'ar' ? 'English' : 'Arabic'
+})
 </script>
 
 <template>
@@ -36,18 +47,27 @@ const logout = () => {
         <ul class="flex flex-row mt-1">
           <!-- Navigation Links -->
           <li v-if="!user.isLoggedIn">
-            <a class="px-2 text-white" href="#" @click.prevent="toggleAuthModal"
-              >Login / Register</a
-            >
+            <a class="px-2 text-white" href="#" @click.prevent="toggleAuthModal">{{
+              t('menu.login')
+            }}</a>
           </li>
           <template v-else>
             <li>
-              <router-link class="px-2 text-white" :to="{ name: 'manage' }">Manage</router-link>
+              <router-link class="px-2 text-white" :to="{ name: 'manage' }">{{
+                t('menu.manage')
+              }}</router-link>
             </li>
             <li>
-              <a class="px-2 text-white" href="#" @click.prevent="logout">Logout</a>
+              <a class="px-2 text-white" href="#" @click.prevent="logout">{{ t('menu.logout') }}</a>
             </li>
           </template>
+        </ul>
+        <ul class="ml-auto">
+          <li>
+            <a @click.prevent="changeLocale" class="px-2 text-white" href="#">{{
+              currentLocale
+            }}</a>
+          </li>
         </ul>
       </div>
     </nav>

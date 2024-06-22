@@ -4,6 +4,9 @@ import { tracksCollection, auth, commentsCollection } from '@/includes/firebase'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { usePlayerStore } from '@/stores/player'
+import { useI18n } from 'vue-i18n'
+
+const { t, n } = useI18n()
 
 const user = useUserStore()
 const player = usePlayerStore()
@@ -142,6 +145,7 @@ onMounted(async () => {
           <!-- Song Info -->
           <div class="text-3xl font-bold">{{ track.modified_name }}</div>
           <div>{{ track.genre }}</div>
+          <div>{{ n(2, 'currency') }}</div>
         </div>
       </div>
     </section>
@@ -150,7 +154,7 @@ onMounted(async () => {
       <div class="bg-white rounded border border-gray-200 relative flex flex-col">
         <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
           <!-- Comment Count -->
-          <span class="card-title">Comments ({{ track.comments_count }})</span>
+          <span class="card-title">{{ t('track.comment_count', track.comments_count) }}</span>
           <i class="fa fa-comments float-right text-green-400 text-2xl"></i>
         </div>
         <div class="p-6">
@@ -166,7 +170,7 @@ onMounted(async () => {
               as="textarea"
               name="comment"
               class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded mb-4"
-              placeholder="Your comment here..."
+              :placeholder="t('form.comment_placeholder')"
             ></vee-field>
             <ErrorMessage name="comment" class="text-red-600" />
             <button
@@ -174,7 +178,7 @@ onMounted(async () => {
               type="submit"
               class="py-1.5 px-3 rounded text-white bg-green-600 block"
             >
-              Submit
+              {{ t('form.submit_button') }}
             </button>
           </vee-form>
           <!-- Sort Comments -->
@@ -182,8 +186,8 @@ onMounted(async () => {
             v-model="sortOrder"
             class="block mt-4 py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
           >
-            <option value="asc">Latest</option>
-            <option value="desc">Oldest</option>
+            <option value="asc">{{ t('form.latest') }}</option>
+            <option value="desc">{{ t('form.oldest') }}</option>
           </select>
         </div>
       </div>
