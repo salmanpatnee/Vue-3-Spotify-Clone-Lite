@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { tracksCollection, auth } from '@/includes/firebase'
 import AppUpload from '@/components/AppUpload.vue'
-import TrackItem from '@/components/track/TrackItem.vue'
+import ManageTrackItem from '@/components/track/ManageTrackItem.vue'
 import { onBeforeRouteLeave } from 'vue-router'
 
 const tracks = ref([])
@@ -53,7 +53,7 @@ onBeforeRouteLeave((to, from) => {
             <i class="fa fa-compact-disc float-right text-green-400 text-2xl"></i>
           </div>
           <div class="p-6">
-            <track-item
+            <manage-track-item
               v-for="(track, index) in tracks"
               :key="track.documentId"
               :track="track"

@@ -20,7 +20,7 @@ const show = () => {
     class="flex justify-between items-center p-3 pl-6 cursor-pointer transition duration-300 hover:bg-gray-50"
   >
     <div @click.prevent="show">
-      <a class="font-bold block text-gray-600">{{ track.modifies_name }} </a>
+      <a class="font-bold block text-gray-600">{{ track.modified_name }} </a>
       <span class="text-gray-500 text-sm">{{ track.display_name }}</span>
     </div>
 
