@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '@/stores/user'
-import Home from '@/views/HomeView.vue'
-import Manage from '@/views/ManageView.vue'
-import Track from '@/views/TrackShow.vue'
+
+const Home = () => import('@/views/HomeView.vue')
+const Manage = () => import('@/views/ManageView.vue')
+const Track = () => import('@/views/TrackShow.vue')
 
 const routes = [
   {
